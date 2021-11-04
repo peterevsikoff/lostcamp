@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LostCampStore.Areas.Admin.Models.ViewModels.Shop.OrderDetVMAdm>
+
+@{
+    ViewBag.Title = "ordet";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Наименование
+        </th>
+        <th>
+            Количество
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            Сумма
+        </th>
+        <th>
+            Изображение
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                <img src="/Images/Uploads/Products/@item.ProductId/Thumbs/@item.Image" />
+            </td>
+
+        </tr>
+
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="grandtotal"><b>Итого: </b><span>@ViewBag.GrandTotal</span>BYN</td>
+    </tr>
+
+</table>

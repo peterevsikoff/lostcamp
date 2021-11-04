@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – Зона администратора</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        @Html.ActionLink("Заказы", "Index", "Dashboard", "", new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("Страницы", "Index", "Pages", "", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Боковая панель", "EditSidebar", "Pages", "", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Категории", "Categories", "Shop", "", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Товары", "Products", "Shop", "", new { @class = "nav-link" })
+                </li>
+            </ul>
+            <!--New right menu-->
+            @*<ul class="navbar-nav ml-auto">
+                <li>
+                    <a href="/" class="navbar-brand" target="_blank">Корзина</a>
+                </li>
+            </ul>*@
+            @*<span class="navbar-text">
+                    Navbar text with an inline element
+                </span>*@
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div> 
+    
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+                <img src="~/Content/img/logo.jpg" height="50" class="mb-2" />
+
+                <small class="d-block mb-3 text-muted">&copy; p.evsikoff development @DateTime.Now.Year</small>
+            </div>
+            @*<div class="col-6 col-md">
+                <h5>Контакты</h5>
+                <ul class="list-unstyled text-small">
+                    <li><span class="text-muted">МТС: +375333140391</span></li>
+                    <li><span class="text-muted">А1: +375333140391</span></li>
+                    <li><span class="text-muted">Life: +375333140391</span></li>
+                    <li><span class="text-muted">E-mail: pyatruss-1989@tut.by</span></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Как нас найти?</h5>
+                <ul class="list-unstyled text-small">
+                    <li><span class="text-muted">Адрес: г.Минск, ул.Славинского, д.1</span></li>
+                    <li>
+                        <span class="text-muted">
+                            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3657784c4a9d7f972e9781c8a115e442684969fd8ed8c19cae72b0c07c399ec3&amp;width=320&amp;height=240&amp;lang=ru_RU&amp;scroll=true"></script>
+                        </span>
+                    </li>
+
+                </ul>
+            </div>*@
+            @*<div class="col-6 col-md">
+
+                <ul class="list-unstyled text-small">
+                    @Html.Action("PagesMenuPartial", "Pages")
+                </ul>
+            </div>*@
+        </div>
+    </footer>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    <!-- подключаем бандл к  шаблону-->
+    @Scripts.Render("~/bundles/jqueryui")
+    
+    @Scripts.Render("~/bundles/ckeditor")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

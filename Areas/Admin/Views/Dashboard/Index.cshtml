@@ -1,0 +1,42 @@
+﻿@model IEnumerable<LostCampStore.Areas.Admin.Models.ViewModels.Shop.OrdersAll>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Заказы</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Номер заказа
+        </th>
+        <th>
+            Пользователь
+        </th>
+        <th>
+            Дата заказа
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @*@Html.ActionLink("Детали", "Details", new { /* id=item.PrimaryKey */ })*@
+            <a href="/admin/dashboard/ordet/@item.OrderId" class="btn btn-secondary">Подробнее</a>
+        </td>
+    </tr>
+}
+
+</table>

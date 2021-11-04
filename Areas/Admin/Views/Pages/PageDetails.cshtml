@@ -1,0 +1,43 @@
+﻿@model LostCampStore.Models.ViewModels.Pages.PageVM
+
+@{
+    ViewBag.Title = "Детали страницы";
+}
+
+<h2>Детали страницы</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Body)
+        </dd>
+
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Исправить", "EditPage", new { id = Model.Id }) |
+    @Html.ActionLink("Назад к страницам", "Index")
+</p>
