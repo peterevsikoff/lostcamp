@@ -1,0 +1,27 @@
+﻿@model IEnumerable<LostCampStore.Models.ViewModels.Shop.ProductVM>
+
+@{
+    /**/
+
+    ViewBag.Title = ViewBag.CategoryName;
+}
+
+<h2>@ViewBag.CategoryName</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <h3 style="text-align:center">@Html.DisplayFor(modelItem => item.Name)</h3>
+                <a href="/shop/product-details/@item.Slug">
+                    <img style="display:block; margin:0 auto;" src="/Images/Uploads/Products/@item.Id/Thumbs/@item.ImageName" />
+                </a>
+                <h4 style="text-align:center">Цена: @Html.DisplayFor(modelItem => item.Price) BYN</h4>
+                <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;" @*style="white-space: nowrap; overflow: hidden; padding: 5px; text-overflow: ellipsis;"*@ >@Html.DisplayFor(modelItem => item.Description)</p>
+
+                <a href="/shop/product-details/@item.Slug" class="btn btn-secondary">Подробнее</a>
+            </div>
+        }
+    </div>
+</div>

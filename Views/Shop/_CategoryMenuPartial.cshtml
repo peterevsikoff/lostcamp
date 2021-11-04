@@ -1,0 +1,13 @@
+﻿@model IEnumerable<LostCampStore.Models.ViewModels.Shop.CategoryVM>
+
+@*<h3>Категории</h3>*@
+
+<hr />
+@foreach (var item in Model)
+{
+    <a class="btn btn-group btn-dark" href="/shop/category/@item.Slug.ToLower()">@item.Name</a>
+}
+<br />
+<hr />
+
+@*list-group-item list-group-item-action*@

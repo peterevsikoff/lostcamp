@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – LostCamp</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" @*style="background-color:whitesmoke;"*@>
+
+            <a class="navbar-brand" href="/">
+                <img src="~/Content/img/logo.jpg" height="45" />
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    @Html.Action("PagesMenuPartial", "Pages")
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Выйти из аккаунта", "Logout", "Account", null, new { @class = "navbar-text", style = "text-decoration: none" })</li>
+                    }
+                    else
+                    {
+                        if (ViewBag.Title == "Login")
+                        {
+                            <li class="navbar-text">@Html.ActionLink("Вход", "Login", "Account", null, new { @class = "active", style = "text-decoration: none" })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Вход", "Login", "Account", null, new { @class = "navbar-text", style = "text-decoration: none" })</li>
+                        }
+                    }
+
+
+                    @if (Request.IsAuthenticated && User.IsInRole("User"))
+                    {
+                        if (ViewBag.Title == "User Profile")
+                        {
+                            <li class="active">@Html.Action("UserNavPartial", "Account", new { area = "" })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.Action("UserNavPartial", "Account", new { area = "" })</li>
+                        }
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("User"))
+                    {
+                        <li>@Html.ActionLink("Мои заказы", "MyOrders", "Shop", null, new { @class = "navbar-text" })</li>
+
+                    }
+
+                </ul>
+                
+               
+                
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <span class="navbar-text">
+                        @Html.ActionLink("Зона администратора", "Index", "Dashboard", new { area = "Admin" }, null)
+                    </span>
+                }
+                else
+                {
+                    if (ViewBag.Title != "Cart Details")
+                    {
+                        <span class="navbar-text">
+                            @Html.Action("CartPartial", "Cart")
+                        </span>
+                    }
+                }
+
+
+            </div>
+            
+        </nav>
+        <div class="container" style="margin-top: 20px;">
+            <a class="navbar-text" style="color:dimgray" href="tel:+375297674440">
+                <img src="~/Content/img/phone.png" />
+                +375(29) 767 44 40&nbsp;&nbsp;
+            </a>
+            <a class="navbar-text" style="color:dimgray" href="mailto:shoplostcamp@yandex.by">
+                <img src="https://img.icons8.com/material/24/000000/important-mail.png" />
+                shoplostcamp@yandex.by&nbsp;&nbsp;
+            </a>
+            <a class="navbar-text" style="color:dimgray" href="https:/vk.com/publiclostcamp">
+                <img src="https://img.icons8.com/material/24/000000/vk-com--v1.png" />
+                LostCamp&nbsp;&nbsp;
+            </a>
+            @*<a class="navbar-text" style="color:dimgray" href="tel:+375333140391">
+                <img src="https://img.icons8.com/material/24/000000/whatsapp.png" />
+                +375(33) 314 03 91&nbsp;&nbsp;
+            </a>*@
+            
+        </div>
+        <div class="container body-content" @*style="margin-top: 10px;"*@>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 ">
+                    @*list-group*@
+                    @Html.Action("CategoryMenuPartial", "Shop")
+                </div>
+
+                @if (ViewBag.Sidebar == "Yes")
+                {
+                    <div class="col">
+                        @RenderBody()
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        @Html.Action("SidebarPartial", "Pages")
+                    </div>
+                }
+                else
+                {
+                    <div class="col">
+                        @RenderBody()
+                    </div>
+                }
+
+            </div>
+
+            <footer class="pt-4 my-md-5 pt-md-5 border-top">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <img src="~/Content/img/logo.jpg" height="50" class="mb-2" />
+
+                        <small class="d-block mb-3 text-muted">&copy; p.evsikoff development @DateTime.Now.Year</small>
+                    </div>
+                    <div class="col-12 col-md">
+                        <h5>Контакты</h5>
+                        <ul class="list-unstyled text-small">
+                            <li>
+                                <a class="navbar-text" style="color:dimgray" href="tel:+375297674440">
+                                <img src="~/Content/img/phone.png" />
+                                    +375(29) 767 44 40&nbsp;&nbsp;
+                                </a>
+                            </li>
+                            <li>
+                                <a class="navbar-text" style="color:dimgray" href="mailto:shoplostcamp@yandex.by">
+                                    <img src="https://img.icons8.com/material/24/000000/important-mail.png" />
+                                    shoplostcamp@yandex.by&nbsp;&nbsp;
+                                </a>
+                            </li>
+                            <li>
+                                <a class="navbar-text" style="color:dimgray" href="https:/vk.com/publiclostcamp">
+                                    <img src="https://img.icons8.com/material/24/000000/vk-com--v1.png" />
+                                    LostCamp&nbsp;&nbsp;
+                                </a>
+                            </li>
+                            <li>
+                                @*<a class="navbar-text" style="color:dimgray" href="tel:+375333140391">
+                                    <img src="https://img.icons8.com/material/24/000000/whatsapp.png" />
+                                    +375(33) 314 03 91&nbsp;&nbsp;
+                                </a>*@
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md">
+                        <h5>Как нас найти?</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><span class="text-muted">Адрес: г.Брест, ул.Варшавское шоссе, д.37, 4 этаж 78</span></li>
+                            <li>
+                                <span class="text-muted">
+                                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Add5611163d49099feae3edc1f33b0cbeb615675204dbebf17640ef704006626c&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                                    @*<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3657784c4a9d7f972e9781c8a115e442684969fd8ed8c19cae72b0c07c399ec3&amp;width=320&amp;height=240&amp;lang=ru_RU&amp;scroll=true"></script>*@
+                                </span>
+                            </li>
+
+                        </ul>
+                    </div>
+                    @*<div class="col-6 col-md">
+
+                            <ul class="list-unstyled text-small">
+                                @Html.Action("PagesMenuPartial", "Pages")
+                            </ul>
+                        </div>*@
+                </div>
+            </footer>
+
+
+
+
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/scripts")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>
